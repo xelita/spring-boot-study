@@ -6,6 +6,8 @@
 	<groupId>com.xelita.study</groupId>
 	<artifactId>spring-boot-study</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+	<name>Spring Boot Study</name>
+	<description>Study of Spring Boot</description>
 
 	<!-- Inherit defaults from Spring Boot -->
 	<parent>
@@ -31,6 +33,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<!-- Add typical dependencies for a jpa application -->
