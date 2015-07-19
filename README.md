@@ -23,8 +23,10 @@ mvn spring-boot:run -Dspring.profiles.active=dev
 ```
 or
 
+### Using Bash command
+
 ``` bash
-mvn spring-boot:run -Dspring.profiles.active=prod
+mvn clean package && java -jar target/spring-boot-study*.jar
 ```
 
 ### Deployment on OpenShift
