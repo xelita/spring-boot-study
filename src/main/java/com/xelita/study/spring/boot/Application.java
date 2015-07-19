@@ -1,5 +1,6 @@
 package com.xelita.study.spring.boot;
 
+import com.google.common.base.*;
 import com.xelita.study.spring.boot.domain.*;
 import com.xelita.study.spring.boot.repository.*;
 import org.slf4j.*;
@@ -7,7 +8,16 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.boot.builder.*;
+import org.springframework.context.annotation.*;
+import springfox.documentation.builders.*;
+import springfox.documentation.service.*;
+import springfox.documentation.spi.*;
+import springfox.documentation.spring.web.plugins.*;
+import springfox.documentation.swagger2.annotations.*;
 
+import static springfox.documentation.builders.PathSelectors.*;
+
+@EnableSwagger2
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
@@ -21,6 +31,33 @@ public class Application implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
+
+
+	@Bean
+	public Docket fullApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.groupName("full-api")
+				.apiInfo(apiInfo())
+				.select()
+				.paths(apiPaths())
+				.build();
+	}
+
+	private Predicate<String> apiPaths() {
+		return Predicates.equalTo("/api/users");
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder()
+				.title("Spring Boot Study API")
+				.description("")
+				.termsOfServiceUrl("http://www.xelita.com")
+				.contact("Xelita")
+				.license("The MIT License (MIT)")
+				.licenseUrl("https://github.com/xelita/spring-boot-study/blob/master/LICENSE")
+				.version("1.0.0")
+				.build();
+	}
 
 	public static void main(String[] args) throws Exception {
 		new SpringApplicationBuilder().sources(Application.class).run(args);

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Transactional(readOnly = true)
+@RequestMapping("/api")
 @RestController
 public class UserController {
 
